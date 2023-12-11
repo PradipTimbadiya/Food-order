@@ -1,40 +1,41 @@
 const mongoose = require('mongoose');
 
-const Dish = mongoose.Schema({
+const Order = mongoose.Schema({
     name:{
         type:String,
         required:true
     },
-    price:{
+    email:{
         type:String,
         required:true
     },
-    category:{
+    mobileNo:{
         type:String,
         required:true
     },
-    image:{
+    country:{
         type:String,
-        default:null
+        required:true
     },
-    publicUrl:{
+    city:{
         type:String,
-        default:null
+        required:true
+    },
+    pincode:{
+        type:String,
+        required:true
     }
-},
-{
+},{
     timestamps:true,
     toJSON:{
         transform:function(_doc,ret,_option){
-            delete ret._id
-            delete ret.publicUrl
+            delete ret._id;
         },
         virtuals: true,
         versionKey :false
     }
 });
 
-const DishModel = mongoose.model("dish",Dish);
+const OrderDetail = mongoose.model("orderdetails" , Order);
 
-module.exports=DishModel
-
+module.exports = OrderDetail;
